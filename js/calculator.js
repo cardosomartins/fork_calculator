@@ -1,0 +1,1 @@
+windows_calculator = new calculator();
