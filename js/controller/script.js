@@ -20,8 +20,81 @@ class calculator{
     }
 
     clickEVentHandler(e){
-        let a = console.log(e.target.innerHTML);        
-        
+        let a = e.target.innerText;   
+        switch(a){
+            case '%':
+                
+                break;
+            case '%':
+                
+                break;
+            case 'x²':
+                
+                break;
+            case '¹/x':
+                
+                break;
+            case 'CE':
+                
+                break;
+            case 'C':
+                
+                break;
+            case '←':
+                
+                break;
+            case '÷':
+                
+                break;
+            case '7':
+                
+                break;
+            case '8':
+                
+                break;
+            case '9':
+                
+                break;
+            case 'X':
+                
+                break;
+            case '4':
+                
+                break;
+            case '5':
+                
+                break;
+            case '6':
+                
+                break;
+            case '-':
+                
+                break;
+            case '1':
+                
+                break;
+            case '2':
+                
+                break;
+            case '3':
+                
+                break;
+            case '+':
+                
+                break;
+            case '±':
+                
+                break;
+            case '0':
+                
+                break;
+            case ',':
+                
+                break;
+            case '=':
+                
+                break;
+        }
     }
 
     showEachElement(){
