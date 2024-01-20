@@ -19,15 +19,15 @@ class calculator{
      
     }
 
-    carlinhos(){
-        console.log("carlinhos diz oi!")
+    clickEVentHandler(e){
+        let a = console.log(e.target.innerHTML);        
+        
     }
 
     showEachElement(){
         this._buttonsEl.forEach( button => {
-            button.addEventListener("click", this.carlinhos)
+            button.addEventListener("click", this.clickEVentHandler)
         });
-
     }
 
 
