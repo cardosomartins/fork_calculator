@@ -38,7 +38,7 @@ class calculator{
     buttonClickedOPeration(btnClickedValue){
         
         if(isNaN(btnClickedValue)){
-            this.calculateExpression()
+            this.calculateExpression();
             this._btnArray.push(btnClickedValue);                        
         }
         else{          
@@ -47,7 +47,7 @@ class calculator{
             }
             else{
                 if(this.getLastClickedButton()){
-                    this.calculateExpression()
+                    this.calculateExpression();
                     this._btnArray.push(btnClickedValue);
                 }
                 else{
@@ -73,6 +73,14 @@ class calculator{
         this._btnArray = [];
         console.log(`Current array: ${this._btnArray}`);
 
+    }
+
+    invertSignMethod(){
+        this.calculateExpression();
+        if(this.getLastClickedButton) this._btnArray.pop();
+        let invertedNumber = -1 * Number(this._btnArray[0]);
+        this._btnArray[0] = invertedNumber.toString();
+        console.log(`Current array: ${this._btnArray}`);
     }
 
 
@@ -137,7 +145,7 @@ class calculator{
                 this.buttonClickedOPeration(btnInnerContent);
                 break;
             case '±':
-                this.buttonClickedOPeration(btnInnerContent);
+                this.invertSignMethod();
                 break;
             case '0':
                 this.buttonClickedOPeration(parseInt(btnInnerContent));
