@@ -18,13 +18,27 @@ class calculator{
     }
 
     getLastClickedButton(){
-
+        let lastButton = this._btnArray[this._btnArray.length - 1];
+        if(isNaN(lastButton)) return true;        
+        else return false;        
     }
 
-    buttonClickedOPeration(btnClickedValue){       
+    calculateExpression(){
+        if(this._btnArray.length == 3){
+            if(this.getLastClickedButton()){
+                this._btnArray.splice(1,1);              
+            }
+            else{
+                this._btnArray = [eval(`${this._btnArray[0]} ${this._btnArray[1]} ${this._btnArray[2]} `)]
+            }
+        }
+        console.log(`Current array: ${this._btnArray}`);
+    }
 
+    buttonClickedOPeration(btnClickedValue){
+        
         if(isNaN(btnClickedValue)){
-            
+            this.calculateExpression()
             this._btnArray.push(btnClickedValue);                        
         }
         else{          
@@ -32,18 +46,37 @@ class calculator{
                 this._btnArray.push(btnClickedValue.toString());
             }
             else{
-                let newConcatenatedArray = Array.from(this._btnArray);
-                newConcatenatedArray.push(btnClickedValue.toString());
-                this._btnArray.pop();
-                this._btnArray.push(newConcatenatedArray.join(""));
+                if(this.getLastClickedButton()){
+                    this.calculateExpression()
+                    this._btnArray.push(btnClickedValue);
+                }
+                else{
+                    let newConcatenatedArray = [this._btnArray[this._btnArray.length - 1]];
+                    newConcatenatedArray.push(btnClickedValue.toString());
+                    this._btnArray.pop();
+                    this._btnArray.push(newConcatenatedArray.join(""));
+                }
+
+
             }            
         }
+        
+
         console.log(`Current array: ${this._btnArray}`);
+    }
+
+    clearEntryMethod(){
+        this._btnArray.pop();
+        console.log(`Current array: ${this._btnArray}`);
+    }
+    clearAllMethod(){
+        this._btnArray = [];
+        console.log(`Current array: ${this._btnArray}`);
+
     }
 
 
     clickEventHandler(e){
-        console.log(e);
         let btnInnerContent = e.innerText;
         switch(btnInnerContent){
             case '%':
@@ -56,10 +89,10 @@ class calculator{
                 this.buttonClickedOPeration(btnInnerContent);
                 break;
             case 'CE':
-                this.buttonClickedOPeration(btnInnerContent);
+                this.clearEntryMethod();
                 break;
             case 'C':
-                this.buttonClickedOPeration(btnInnerContent);
+                this.clearAllMethod();
                 break;
             case '←':
                 this.buttonClickedOPeration(btnInnerContent);
@@ -74,7 +107,7 @@ class calculator{
                 this.buttonClickedOPeration(parseInt(btnInnerContent));
                 break;
             case '9':
-                (() => this.buttonClickedOPeration(parseInt(btnInnerContent)));
+                this.buttonClickedOPeration(parseInt(btnInnerContent));
                 break;
             case 'X':
                 this.buttonClickedOPeration(btnInnerContent);
@@ -113,7 +146,7 @@ class calculator{
                 this.buttonClickedOPeration(btnInnerContent);
                 break;
             case '=':
-                this.buttonClickedOPeration(btnInnerContent);
+                this.calculateExpression();
                 break;
         }
     }
