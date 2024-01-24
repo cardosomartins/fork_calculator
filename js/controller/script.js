@@ -140,10 +140,19 @@ class calculator{
         console.log(`dotToggle is now ${this.dotToggle}`);
 
     }
+
     dotToggleOff(){
         this.dotToggle = false;
         console.log(`dotToggle is now ${this.dotToggle}`);
     }
+    
+    squareNumber(){
+        this.calculateExpression();
+        if(this.getLastClickedButton()) this._btnArray.pop();
+        let squareNumber = Number(this._btnArray[0])**2;
+        this._btnArray[0] = squareNumber.toString();
+    }
+
 
     clickEventHandler(e){
         let btnInnerContent = e.innerText;
@@ -154,7 +163,7 @@ class calculator{
                 break;
             case 'x²':
                 this.dotToggleOff()
-                if(this._btnArray != 0) this.buttonClickedOPeration(btnInnerContent);
+                if(this._btnArray != 0) this.squareNumber();
                 break;
             case '¹/x':
                 this.dotToggleOff()
