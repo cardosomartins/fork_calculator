@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="author" content="Hcode Treinamentos">
     <meta charset="utf-8" />
@@ -8,70 +9,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <style>
-    body {
-        background-color:#050505;
-    }
-    .center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        
-    }
-    #calculadora {
-        background-color: #B1B1B1;
-        width: 322px;
-        height: 500px;
-        padding: 6px;
-    }
-    #calculadora .btn {
-        margin: 2px;
-        border-radius: 0;
-        min-height: 44px;
-        outline: none;
-        box-shadow: none;
-    }
-    #calculadora .btn:hover {
-        background-color: #BCBCBC;
-    }
-    #calculadora .btn:active {
-        background-color: #909090;
-    }
-    header {
-        height: 205px;
-        font-size: 36px;
-        font-weight: bold;
-        position: relative;
-    }
-    #display {
-        color: #000;
-        text-align: right;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        font-size: 48px;
-        font-weight: 600;
-    }
-    .btn-number {
-        background-color: #EFEFEF;
-        font-size: 24px;
-        padding-top: 0;
-        padding-bottom: 0;
-        font-weight: 600;
-    }
-    .btn-others {
-        background-color: #D1D1D1;
-        padding-top: 0;
-        padding-bottom: 0;
-        font-size: 20px;
-    }
+        body {
+            background-color: #050505;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+
+        }
+
+        #calculadora {
+            background-color: #B1B1B1;
+            width: 322px;
+            height: 500px;
+            padding: 6px;
+        }
+
+        #calculadora .btn {
+            margin: 2px;
+            border-radius: 0;
+            min-height: 44px;
+            outline: none;
+            box-shadow: none;
+        }
+
+        #calculadora .btn:hover {
+            background-color: #BCBCBC;
+        }
+
+        #calculadora .btn:active {
+            background-color: #909090;
+        }
+
+        header {
+            height: 205px;
+            font-size: 36px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        #display {
+            color: #000;
+            text-align: right;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            font-size: 48px;
+            font-weight: 600;
+        }
+
+        .btn-number {
+            background-color: #EFEFEF;
+            font-size: 24px;
+            padding-top: 0;
+            padding-bottom: 0;
+            font-weight: 600;
+        }
+
+        .btn-others {
+            background-color: #D1D1D1;
+            padding-top: 0;
+            padding-bottom: 0;
+            font-size: 20px;
+        }
     </style>
 </head>
+
 <body>
-    
+
     <div class="center">
         <div id="calculadora">
             <header>
+                <div style="text-align: right;" id="upperDisplay"></div>
                 <div id="display">
                     0
                 </div>
@@ -116,7 +128,8 @@
             </section>
         </div>
     </div>
-<script src="js/controller/script.js"></script>
-<script src="js/calculator.js"></script>
+    <script src="js/controller/script.js"></script>
+    <script src="js/calculator.js"></script>
 </body>
+
 </html>

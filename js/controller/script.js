@@ -3,6 +3,9 @@ class calculator {
         this.dotToggle = false;
         this._btnArray = [];
         this._buttonsEl = document.querySelectorAll(".btn");
+        this._upperDisplayEl = document.getElementById("upperDisplay");
+        this._displayEl = document.getElementById("display");
+
         this.init();
     }
 
@@ -239,8 +242,14 @@ class calculator {
                 if (this._btnArray != 0) this.calculateExpression();
                 break;
         }
-        console.log(`Current array: ${this._btnArray}`);
+        this.updateDisplays(btnInnerContent);
 
+    }
+
+    updateDisplays(pressedButtonContent){
+
+        this._displayEl.innerHTML = pressedButtonContent;
+        this._upperDisplayEl.innerHTML = this._btnArray.join("");
     }
 
     showEachElement() {
