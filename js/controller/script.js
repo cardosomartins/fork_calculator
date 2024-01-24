@@ -153,6 +153,13 @@ class calculator{
         this._btnArray[0] = squareNumber.toString();
     }
 
+    invertNumber(){
+        this.calculateExpression();
+        if(this.getLastClickedButton()) this._btnArray.pop();
+        let invertNumber = 1/Number(this._btnArray[0]);
+        this._btnArray[0] = invertNumber.toString();
+    }
+
 
     clickEventHandler(e){
         let btnInnerContent = e.innerText;
@@ -167,7 +174,7 @@ class calculator{
                 break;
             case '¹/x':
                 this.dotToggleOff()
-                this.buttonClickedOPeration(btnInnerContent);
+                this.invertNumber();
                 break;
             case 'CE':
                 this.dotToggleOff()
