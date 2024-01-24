@@ -33,6 +33,10 @@ class calculator{
                 this._btnArray = [eval(`${this._btnArray[0]} ${this._btnArray[1]} ${this._btnArray[2]} `)]
             }
         }
+        else if(this._btnArray[3] == "."){
+            this._btnArray[2] = eval(`${this._btnArray[2]} + ((${this._btnArray[4]})/(10**(${this._btnArray[4].length})))`);
+            this._btnArray = [eval(`(${this._btnArray[0]} ${this._btnArray[1]} ${this._btnArray[2]})`)];
+        }
     }
 
     joinArrayElements(elementToBeInserted){
@@ -61,9 +65,6 @@ class calculator{
                 }
             }                        
             else{
-                // if(this._btnArray[1] == ".") this.joinArrayElements(btnClickedValue);
-                // else if(this._btnArray[3] != "."){
-                // }
                 if(this._btnArray[1] != "."){
                     if(this._btnArray[3] != ".") {
                         this._btnArray.push(".");
@@ -159,7 +160,6 @@ class calculator{
         let invertNumber = 1/Number(this._btnArray[0]);
         this._btnArray[0] = invertNumber.toString();
     }
-
 
     clickEventHandler(e){
         let btnInnerContent = e.innerText;
