@@ -33,7 +33,13 @@ class calculator{
                 this._btnArray = [eval(`${this._btnArray[0]} ${this._btnArray[1]} ${this._btnArray[2]} `)]
             }
         }
-        console.log(`Current array: ${this._btnArray}`);
+    }
+
+    joinArrayElements(elementToBeInserted){
+        let newConcatenatedArray = [this._btnArray[this._btnArray.length - 1]];
+        newConcatenatedArray.push(elementToBeInserted.toString());
+        this._btnArray.pop();
+        this._btnArray.push(newConcatenatedArray.join(""));
     }
 
     buttonClickedOPeration(btnClickedValue){
@@ -43,19 +49,44 @@ class calculator{
                 this._btnArray.push("0");
                 this._btnArray.push(".");
                 this._btnArray.push(btnClickedValue);
-            }            
-            else{
-                let newConcatenatedArray = [this._btnArray[this._btnArray.length - 1]];
-                newConcatenatedArray.push(btnClickedValue.toString());
-                this._btnArray.pop();
-                this._btnArray.push(newConcatenatedArray.join(""));
             }
-        console.log(`Current array: ${this._btnArray}`);
+            else if(this._btnArray.length == 1){
+                if(this.getLastClickedButton()){
+                    this._btnArray.pop();
+                    this._btnArray.push(".");
+                }                
+                else{
+                    this._btnArray.push(".");
+                    this._btnArray.push(btnClickedValue);
+                }
+            }                        
+            else{
+                // if(this._btnArray[1] == ".") this.joinArrayElements(btnClickedValue);
+                // else if(this._btnArray[3] != "."){
+                // }
+                if(this._btnArray[1] != "."){
+                    if(this._btnArray[3] != ".") {
+                        this._btnArray.push(".");
+                        this._btnArray.push(btnClickedValue);
+                    }
+                    else{
+                        this.joinArrayElements(btnClickedValue);
+                    }
+                }
+                else{this.joinArrayElements(btnClickedValue)};
+            }
 
         }
         else{
             if(this._btnArray[1] == "."){
                 this._btnArray = [eval(`${this._btnArray[0]} + ((${this._btnArray[2]})/(10**(${this._btnArray[2].length}))) `)];
+                this._btnArray.push(btnClickedValue);
+                return 0;
+            }
+            if(this._btnArray[3] == "."){
+                this._btnArray[2] = eval(`${this._btnArray[2]} + ((${this._btnArray[4]})/(10**(${this._btnArray[4].length})))`);
+                this._btnArray = [eval(`(${this._btnArray[0]} ${this._btnArray[1]} ${this._btnArray[2]})`)];
+                this._btnArray.push(btnClickedValue);
                 return 0;
             }
 
@@ -73,26 +104,21 @@ class calculator{
                         this._btnArray.push(btnClickedValue);
                     }
                     else{
-                        let newConcatenatedArray = [this._btnArray[this._btnArray.length - 1]];
-                        newConcatenatedArray.push(btnClickedValue.toString());
-                        this._btnArray.pop();
-                        this._btnArray.push(newConcatenatedArray.join(""));
+                        this.joinArrayElements(btnClickedValue);                        
                     }
                 }            
-            }
+            }         
+        
         }
         
         
-        console.log(`Current array: ${this._btnArray}`);
     }
 
     clearEntryMethod(){
         this._btnArray.pop();
-        console.log(`Current array: ${this._btnArray}`);
     }
     clearAllMethod(){
         this._btnArray = [];
-        console.log(`Current array: ${this._btnArray}`);
 
     }
 
@@ -101,19 +127,18 @@ class calculator{
         if(this.getLastClickedButton()) this._btnArray.pop();
         let invertedNumber = -1 * Number(this._btnArray[0]);
         this._btnArray[0] = invertedNumber.toString();
-        console.log(`Current array: ${this._btnArray}`);
     }
 
     percentageButton(){
         this.calculateExpression();
         if(this.getLastClickedButton()) this._btnArray.pop();
         this._btnArray[0] = this._btnArray[0]/100;
-        console.log(`Current array: ${this._btnArray}`);
     }
     
     dotToggleOn(){
         this.dotToggle = true;
         console.log(`dotToggle is now ${this.dotToggle}`);
+
     }
     dotToggleOff(){
         this.dotToggle = false;
@@ -205,6 +230,8 @@ class calculator{
                 if(this._btnArray != 0) this.calculateExpression();
                 break;
         }
+        console.log(`Current array: ${this._btnArray}`);           
+
     }
 
     showEachElement(){
@@ -212,24 +239,7 @@ class calculator{
             button.addEventListener("click", () => {
                 this.clickEventHandler(button);})
         });
-    }
-
-
-    calculatorStart(){
-        this._operation = 7;
-        console.log(this._operation);
-    }
-
-    calculatorMethod(){ 
-
-        this.calculatorStart();
-        
-    }
-
-    
-    
-
-
+    }    
     
     get operation(){
         return this._operation;
